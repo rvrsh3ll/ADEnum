@@ -15,8 +15,8 @@ import sys, os, subprocess, re
 
 # Main definition - constants
 menu_actions  = {}  
-#hostname = ''
-#binddn = ''
+hostname = ''
+binddn = ''
 
 def splitall(path):
     allparts = []
