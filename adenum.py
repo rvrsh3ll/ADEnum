@@ -106,8 +106,8 @@ def menu2():
 # Bind Menu
 def menu3():
     print "Search Menu\n"
-    print "1. Return all users"
-    print "2. Return all info on a user"
+    print "1. Return all usernames"
+    print "2. Return all information on a user"
     print "3. List all groups"
     print "4. List users of a specific group"
     print "5. List all groups a user is a member of"
@@ -119,9 +119,17 @@ def menu3():
     print "0. Quit" 
     choice = raw_input(" >>  ")
     if choice == "1":
-        cmd = """ldapsearch -x -h {} -b "dc={},dc={}" -D {} "(&(samAccountType=805306368))" -W""".format(hostname, tld, ext, binddn)
+        cmd = """ldapsearch -x -h {} -b "dc={},dc={}" -D {} "objectclass=user" sAMAccountName -W""".format(hostname, tld, ext, binddn)
+        output = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, bufsize=1)
+        with output.stdout:
+            print ""
+            for line in iter(output.stdout.readline, b''):
+                if ("sAMAccountName:") in line:
+                    if '$' not in line:
+                        m = re.search(r'[^sAMAccountName:].*$', line)
+                        print m.group(0).lstrip()
+        output.wait()
         print ""
-        print subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE).stdout.read()
         menu3()
     if choice == "2":
         username = raw_input(" Enter Username >> ")
