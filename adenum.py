@@ -41,9 +41,9 @@ def main_menu():
     os.system('clear')
     
     header = """\
-         / \ / \ / \ / \   / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ 
-        ( L | D | A | P ) ( E | n | u | m | e | r | a | t | o | r )
-         \_/ \_/ \_/ \_/   \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/
+          / \ / \   / \ / \ / \ / \ / \ / \ / \ / \ / \ / \ 
+         ( A | D ) ( E | n | u | m | e | r | a | t | o | r )
+          \_/ \_/   \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/
     """
     print header
     print "Please enter your settings and begin your enumeration:"
